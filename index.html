@@ -6,24 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advance Counter App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="src/output.css">
-    
+
 </head>
 
 <body class="bg-[#F6F6F6]">
     <section class="w-full h-screen flex items-center justify-center">
         <div class="text-center content-center">
             <h1 class="min-w-[212px] h-[44px] font-normal text-[36px] text-[#808080] mx-auto"> Advance Counter app </h1>
-            <div class="w-[460px] min-h-[300px] rounded-[20px] bg-white shadow-[0px_11px_44px_-10px_rgba(0,0,0,0.25)] text-center p-[15px] mx-auto mt-4">
-                <input type="text" id="counter" placeholder="0" class="min-w-[23px] h-[44px] font-normal text-[36px] text-center text-black bg-white outline-none mx-auto block mt-10" />
+            <div
+                class="w-[460px] min-h-[300px] rounded-[20px] bg-white shadow-[0px_11px_44px_-10px_rgba(0,0,0,0.25)] text-center p-[15px] mx-auto mt-4">
+                <input type="text" id="counter" placeholder="0"
+                    class="min-w-[23px] h-[44px] font-normal text-[36px] text-center text-black bg-white outline-none mx-auto block mt-10" />
                 <div class="flex space-x-3 justify-center mt-6">
-                        <button id="addBtn" class="min-w-[138px] h-auto rounded-[4px] px-[35px] py-[13px] border border-blue-500 text-blue-500 bg-white hover:bg-blue-100 text-[19px]">
-                            Add One
-                        </button>
-                        <button id="saveBtn" class="w-[138px] h-auto rounded-[4px] px-[35px] py-[13px] bg-[linear-gradient(97.42deg,#128DFF_-4.95%,#1444EF_109.04%)] text-white hover:opacity-90 text-[19px]">
-                            Save 
-                        </button> 
+                    <button id="addBtn"
+                        class="min-w-[138px] h-auto rounded-[4px] px-[35px] py-[13px] border border-blue-500 text-blue-500 bg-white hover:bg-blue-100 text-[19px]">
+                        Add One
+                    </button>
+                    <button id="saveBtn"
+                        class="w-[138px] h-auto rounded-[4px] px-[35px] py-[13px] bg-[linear-gradient(97.42deg,#128DFF_-4.95%,#1444EF_109.04%)] text-white hover:opacity-90 text-[19px]">
+                        Save
+                    </button>
                 </div>
                 <div class="mt-10">
                     <h2 class="text-gray-500 mb-2 text-[18px]">Previous values</h2>
@@ -34,23 +40,26 @@
         </div>
     </section>
     <script>
-        const counter = document.getElementById("counter");
+        const counterInput = document.getElementById("counter");
         const addBtn = document.getElementById("addBtn");
         const saveBtn = document.getElementById("saveBtn");
+        const previousValuesBox = document.getElementById("previousValues");
 
+        let previousValues = [];
         let count = 0;
+        counterInput.value = count;
 
         addBtn.addEventListener("click", () => {
             count++;
-            counter.value = count;
+            counterInput.value = count;
         });
 
         saveBtn.addEventListener("click", () => {
-            const p = document.createElement("p");
-            p.textContent = count;
-            previousValues.appendChild(p);
+            if (count === 0) return;
+            previousValues.push(count);
+            previousValuesBox.innerText = previousValues.join(", ");
             count = 0;
-            counter.value = 0;
+            counterInput.value = count;
         });
 
     </script>
